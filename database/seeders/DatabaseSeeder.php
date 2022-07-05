@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Lines;
+use App\Models\Stations;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +22,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+      //  Lines::factory(3)->create();
+        Stations::factory(3)->create();
     }
 }

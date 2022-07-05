@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mytable', function (Blueprint $table) {
+        Schema::create('stations', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->integer('station_id')->unique();
+            $table->integer('next_station_id')->unique();
+            $table->string('crossing')->nullable();
+            $table->foreignId('lines_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mytable');
+        Schema::dropIfExists('stations');
     }
 };

@@ -1,4 +1,8 @@
 @extends('layout.app')
-<h1>{{ $registationDone }}</h1>
+<div>
+    @fo
+    <h1>{{ $registationDone }}</h1>
+</div>
+
 
 

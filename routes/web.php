@@ -2,10 +2,10 @@
 
 
 use App\Http\Controllers\RegistrationController;
-use Illuminate\Http;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\LinesController;
+use App\Http\Controllers\Api\StationController;
 
 Route::get('/', function () {
     return view('layout.app');
@@ -13,6 +13,9 @@ Route::get('/', function () {
 
 Route::post('/registration/as', [RegistrationController::class, 'index']
 )->name('registration-form-post');
+
+Route::get('/registration/asa', [RegistrationController::class, 'welcomUser']
+)->name('registration-form-data');
 
 Route::get('/registration', function (){
     return view('register');

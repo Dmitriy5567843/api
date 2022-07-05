@@ -18,10 +18,17 @@ class RegistrationController extends Controller
     {
         $service = new RegistrationService();
         $serviceResult = $service->registration($req);
-        return view('checkout',['registationDone'=>"$serviceResult"]);
+        $user = Registration::all();
+        return view('checkout',['registationDone'=>$user]);
 //       if ($serviceResult===true){
 //           return redirect()->route('main', ['registrationDone' => $serviceResult]);
 //       }
 
     }
+
+//    public function welcomUser(){
+//        $user = Registration::all();
+//        dd($user);
+//
+//    }
 }
