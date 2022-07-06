@@ -11,7 +11,15 @@ use App\Http\Requests\Station\CreateRequest;
 
 class StationController extends Controller
 {
-    public function index()
+//    public function __construct(StationService $stationService)
+//    {
+//        $this->
+//    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
     {
         $station = Stations::all();
 
@@ -23,9 +31,13 @@ class StationController extends Controller
         ], 200);
     }
 
-    public function view(int $id)
+    /**
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function view(int $id): JsonResponse
     {
-        $station = Stations::first($id);
+        $station = Stations::where('id', $id)->first();
         return response()->json([
             'data' => [
                 'station' => $station
@@ -40,7 +52,10 @@ class StationController extends Controller
      * @return JsonResponse
      */
     public function create(CreateRequest $request, StationService $stationService): JsonResponse
+
+
     {
+
         $station = $stationService->create($request->validated());
         return response()->json([
             'data' => [

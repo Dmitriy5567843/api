@@ -5,24 +5,27 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Line\CreateRequest;
 use App\Http\Requests\Line\UpdateRequest;
+use App\Http\Resources\LineResource;
 use App\Models\Lines;
 use App\Services\LineService;
 use Illuminate\Http\JsonResponse;
 
 class LineController extends Controller
 {
+
     /**
      * @return JsonResponse
      */
     public function index(): JsonResponse
     {
-        $lines = Lines::all();
+        $lines = LineResource::collection(Lines::all());
 
         return response()->json([
             'data' => [
                 'lines' => $lines
             ]
         ], 200);
+
     }
 
     /**
@@ -31,7 +34,7 @@ class LineController extends Controller
      */
     public function view(int $id): JsonResponse
     {
-        $line = Lines::first($id);
+        $line = LineResource::collection((Lines::where('id', $id)->get()));
 
         return response()->json([
             'data' => [
