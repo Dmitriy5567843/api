@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('stations', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->integer('station_id')->unique();
-            $table->integer('next_station_id')->unique();
             $table->string('crossing')->nullable();
             $table->foreignId('lines_id')->constrained()->onDelete('cascade');
             $table->timestamps();

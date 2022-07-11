@@ -12,6 +12,16 @@ use Illuminate\Http\JsonResponse;
 
 class LineController extends Controller
 {
+private LineService $lineService;
+
+    /**
+     * @param LineService $lineService
+     */
+    public function __construct(LineService $lineService)
+
+{
+    $this->lineService= $lineService;
+}
 
     /**
      * @return JsonResponse
@@ -28,6 +38,7 @@ class LineController extends Controller
 
     }
 
+
     /**
      * @param int $id
      * @return JsonResponse
@@ -35,6 +46,7 @@ class LineController extends Controller
     public function view(int $id): JsonResponse
     {
         $line = LineResource::collection((Lines::where('id', $id)->get()));
+
 
         return response()->json([
             'data' => [
@@ -46,12 +58,11 @@ class LineController extends Controller
 
     /**
      * @param CreateRequest $request
-     * @param LineService $lineService
      * @return JsonResponse
      */
-    public function create(CreateRequest $request, LineService $lineService): JsonResponse
+    public function create(CreateRequest $request): JsonResponse
     {
-        $line = $lineService->create($request->validated());
+        $line = $this->lineService->create($request->validated());
 
         return response()->json([
             'data' => [
@@ -60,15 +71,15 @@ class LineController extends Controller
         ], 201);
     }
 
+
     /**
      * @param int $id
      * @param UpdateRequest $request
-     * @param LineService $lineService
      * @return JsonResponse
      */
-    public function update(int $id, UpdateRequest $request, LineService $lineService): JsonResponse
+    public function update(int $id, UpdateRequest $request): JsonResponse
     {
-        $line = $lineService->update($id, $request->validated());
+     $line = $this->lineService->update($id, $request->validated());
 
         return response()->json([
             'data' => [
@@ -76,6 +87,7 @@ class LineController extends Controller
             ]
         ], 200);
     }
+
 
     /**
      * @param int $id

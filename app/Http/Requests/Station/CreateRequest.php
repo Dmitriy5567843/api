@@ -25,8 +25,6 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:10', 'unique:lines,name'],
-            'station_id' => ['required', 'int', 'unique:stations,station_id'],
-            'next_station_id' => ['required', 'int', 'unique:stations,station_id'],
             'crossing' => ['nullable', 'string', 'min:3', 'max:10', 'unique:stations,crossing']
         ];
     }

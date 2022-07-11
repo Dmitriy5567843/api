@@ -9,7 +9,11 @@ class Stations extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'crossing ',
 
+    ];
 
 
 

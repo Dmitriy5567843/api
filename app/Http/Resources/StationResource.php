@@ -4,12 +4,12 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LineResource extends JsonResource
+class StationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
@@ -17,11 +17,9 @@ class LineResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'crossing' => $this->crossing,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'stations' => StationResource::collection($this->stations),
-
-
         ];
     }
 }
